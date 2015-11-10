@@ -1,15 +1,15 @@
 package com.rais.string.utils;
 
+import java.util.Arrays;
+
 
 public class StringUtils {
 	/**
-	 * This method returns the intersection of two ArrayList items.
-	 * For e.g. list1 is {a, b, c} and list2 is {b, c, d, e}, then
-	 * intersection operation returns {b, c}
-	 * In order words, it returns those elements common to both.
-	 * @param list1
-	 * @param list2
-	 * @return
+	 * This method returns true if the String provided is a palindrome.
+	 * i.e The reverse of the string is the same as the string.
+	 * For e.g. NOON returns true and it's reverse is also NOON.
+	 * @param input
+	 * @return boolean
 	 */
 	public static boolean isPalindrome(String input){
 		if (input == null) {
@@ -20,4 +20,27 @@ public class StringUtils {
 	    return strBuilder.toString().equals(input);
 	}
 
+	/**
+	 * This method returns true if "anagram" is anagram of "word".
+	 * There is an additional functionality. you can make it case insensitive.
+	 * if isCaseSensitive boolean is set to True, then it would take the case 
+	 * also into consideration while checking the equality.
+	 * Anagrams are those words which share the same letters.
+	 * For e.g.  mary and army are anagrams.
+	 * @param word
+	 * @param anagram
+	 * @param isCaseSensitive
+	 * @return boolean
+	 */
+	public static boolean isAnagram(String word, String anagram, boolean isCaseSensitive) {
+		if(!isCaseSensitive){
+			word = word.toLowerCase();
+			anagram = anagram.toLowerCase();
+		} 
+		char[] charFromWord = word.toCharArray(); 
+		char[] charFromAnagram = anagram.toCharArray(); 
+		Arrays.sort(charFromWord); 
+		Arrays.sort(charFromAnagram);
+		return Arrays.equals(charFromWord, charFromAnagram);
+	}
 }
